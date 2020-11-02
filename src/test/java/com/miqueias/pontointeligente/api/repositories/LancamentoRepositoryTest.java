@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -40,7 +40,7 @@ public class LancamentoRepositoryTest {
 	
 	private Long funcionarioId;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		Empresa empresa = this.empresaRepository.save(obterDadosEmpresa());
 		
@@ -63,13 +63,13 @@ public class LancamentoRepositoryTest {
 		assertEquals(2, lancamentos.size());
 	}
 	
-	//@Test
-	//public void testBuscarLancamentosPorFuncionarioIdPaginado() {
-	//	PageRequest page = new PageRequest(0, 10);
-	//	Page<Lancamento> lancamentos = this.lancamentoRepository.findByFuncionarioId(funcionarioId, page);
-	//	
-	//	assertEquals(2, lancamentos.getTotalElements());
-	//}
+	@Test
+	public void testBuscarLancamentosPorFuncionarioIdPaginado() {
+		PageRequest page = PageRequest.of(0, 10);
+		Page<Lancamento> lancamentos = this.lancamentoRepository.findByFuncionarioId(funcionarioId, page);
+		
+		assertEquals(2, lancamentos.getTotalElements());
+	}
 	
 	private Lancamento obterDadosLancamentos(Funcionario funcionario) {
 		Lancamento lancameto = new Lancamento();
