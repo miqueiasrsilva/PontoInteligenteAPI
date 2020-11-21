@@ -1,7 +1,7 @@
 package com.miqueias.pontointeligente.api.services;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
@@ -30,7 +30,7 @@ public class FuncionarioServiceTest {
 	@BeforeEach
 	public void setUp() throws Exception {
 		BDDMockito.given(this.funcionarioRepository.save(Mockito.any(Funcionario.class))).willReturn(new Funcionario());
-		//BDDMockito.given(this.funcionarioRepository.findById(Mockito.anyLong())).willReturn(new Funcionario());
+		BDDMockito.given(this.funcionarioRepository.findById(Mockito.anyLong()));
 		BDDMockito.given(this.funcionarioRepository.findByEmail(Mockito.anyString())).willReturn(new Funcionario());
 		BDDMockito.given(this.funcionarioRepository.findByCpf(Mockito.anyString())).willReturn(new Funcionario());
 	}
